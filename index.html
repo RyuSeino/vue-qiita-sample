@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <div id="app">
+            <input type="text" id="tag" v-model.trim="tag">
+            <button v-on:click="reloadPage">更新</button>
+            <div>検索タグ : {{ tag }}</div>
+            <transition-group name="bounce">
+                <div class="card article" v-for="result in results" v-bind:key="result.id">
+                    <div class="card-content">
+                        <p class="title article-title">{{ result.title }}</p>
+                        <p class="tag is-rounded">{{ result.created_at }}</p>
+                        <div class="content article-body">
+                            <p v-html="result.rendered_body"></p>
+                        </div>
+                    </div>
+                </div>
+            </transition-group>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
